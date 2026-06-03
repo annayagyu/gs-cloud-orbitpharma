@@ -80,9 +80,6 @@ jobs:
       id-token: write
       contents: read
 
-    environment:
-      name: production
-      url: "https://orbitpharma.azurewebsites.net"
 
     steps:
       - name: Baixar artefato do job de build
