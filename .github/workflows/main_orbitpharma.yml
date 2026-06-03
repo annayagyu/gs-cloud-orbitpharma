@@ -44,10 +44,10 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Configurar Python ${{ env.PYTHON_VERSION }}
+      - name: Configurar Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: "3.12"    # ← valor direto, sem env
           cache: "pip"
 
       - name: Instalar dependências
