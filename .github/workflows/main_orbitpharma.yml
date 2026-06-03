@@ -1,14 +1,12 @@
 # ============================================================
 # Orbit Pharma Labs — CI/CD Pipeline
-# Azure Web Apps Deploy Action
-# Docs: https://github.com/Azure/webapps-deploy
 # ============================================================
 # Equipe:
-#   Sofia Amorim Coutinho       — RM 552534
-#   Anna Yagyu                  — RM 550360
+#   Sofia Amorim Coutinho         — RM 552534
+#   Anna Yagyu                    — RM 550360
 #   Felipe Capriotti da Silva Santos — RM 098460
-#   Gustavo Kawamura Christofani — RM 099679
-#   Gabriel Pacheco             — RM 550191
+#   Gustavo Kawamura Christofani  — RM 099679
+#   Gabriel Pacheco               — RM 550191
 # ============================================================
 
 name: "Orbit Pharma Labs — Build & Deploy to Azure"
@@ -29,13 +27,12 @@ permissions:
   contents: read
 
 env:
-  PYTHON_VERSION: "3.12"
   APP_NAME: "orbitpharma"
   ARTIFACT_NAME: "orbitpharma-release"
 
 jobs:
   build:
-    name: "Build — Python ${{ env.PYTHON_VERSION }}"
+    name: "Build — Python 3.12"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -47,7 +44,7 @@ jobs:
       - name: Configurar Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"    # ← valor direto, sem env
+          python-version: "3.12"
           cache: "pip"
 
       - name: Instalar dependências
@@ -57,7 +54,7 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verificar instalação das dependências
+      - name: Verificar dependências instaladas
         run: |
           source antenv/bin/activate
           pip list
@@ -109,4 +106,4 @@ jobs:
           startup-command: "python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0"
 
       - name: Confirmar URL da aplicação
-        run: echo "Aplicação disponível em ${{ steps.deploy-to-webapp.outputs.webapp-url }}"
+        run: echo "Aplicação disponível em https://orbitpharma.azurewebsites.net"
